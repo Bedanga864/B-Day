@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Someone Special</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+	 .next-button {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .next-button:hover {
+      background-color: #ff1493;
+      transform: scale(1.05);
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5em;
+      margin: 30px 0;
+      animation: fadeInDown 1.5s ease;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 20px auto;
+      max-width: 90%;
+      line-height: 1.6;
+      animation: fadeInUp 2s ease;
+    }
+    .heart {
+      color: red;
+      font-size: 2em;
+      animation: pulse 2s infinite;
+    }
+    .section {
+      margin-top: 60px;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey You! 🌟</h1>
+  <p>It's your sign to make something beautiful for someone who means the world to you.</p>
+
+  <div class="section">
+    <p>You bring light, laughter, and a little bit of magic wherever you go. ✨</p>
+    <p class="heart">♥
+    </p>
+  </div>
+
+  <div class="section">
+    <p>May this small gesture remind you how special you are.</p>
+    <p>Keep smiling, dreaming, and spreading joy. 🌸</p>
+  </div>
+    <!-- NEXT BUTTON -->
+    <a href="pi1.html" class="next-button">Next &gt;</a>
+  </div>
+	
+  <div class="section">
+    <p><strong>With love,</strong><br/>Someone who truly cares 😍</p>
+  </div>
+</body>
+</html>
+<style>
+  css-doodle {
+    --color: @p(#51eaea, #fffde1, #ff9d76, #FB3569);
+    --rule: (
+      :doodle {
+        @grid: 30x1 / 18vmin;
+        --deg: @p(-180deg, 180deg);
+      }
+      :container {
+        perspective: 30vmin;
+      }
+      :after, :before {
+        content: '';
+        background: var(--color); 
+        @place-cell: @r(100%) @r(100%);
+        @size: @r(6px);
+        @shape: heart;
+      }
+    
+      @place-cell: center;
+      @size: 100%;
+    
+      box-shadow: @m2(0 0 50px var(--color));
+      background: @m100(
+        radial-gradient(var(--color) 50%, transparent 0) 
+        @r(-20%, 120%) @r(-20%, 100%) / 1px 1px
+        no-repeat
+      );
+    
+      will-change: transform, opacity;
+      animation: scale-up 12s linear infinite;
+      animation-delay: calc(-12s / @size() * @i());
+
+      @keyframes scale-up {
+        0%, 95.01%, 100% {
+          transform: translateZ(0) rotate(0);
+          opacity: 0;
+        }
+        10% { 
+          opacity: 1; 
+        }
+        95% {
+          transform: 
+            translateZ(35vmin) rotateZ(@var(--deg));
+        }
+      }
+    )
+  }
+</style>
+<css-doodle use="var(--rule)"></css-doodle>

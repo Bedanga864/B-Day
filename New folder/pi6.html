@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Surprise</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: 'Arial', sans-serif; overflow: hidden; transition: background 1s; }
+
+    body.dark { background: #000; color: #fff; }
+    body.light { background: #ffe4ec; color: #000; }
+
+    .center-btn, #cutCakeBtn {
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      padding: 15px 25px;
+      font-size: 1.2em;
+      background: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    #musicToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none;
+      z-index: 2;
+    }
+
+    .banner {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      background: #ff69b4;
+      color: white;
+      padding: 10px 30px;
+      border-radius: 20px;
+      animation: dropBanner 2s forwards;
+      display: none;
+      z-index: 1;
+    }
+
+    @keyframes dropBanner {
+      to { top: 20px; }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 40px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
+      animation: flyBalloon 6s linear infinite;
+    }
+
+    @keyframes flyBalloon {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120vh); }
+    }
+
+    #cake {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 1s;
+      z-index: 1;
+    }
+
+    #cake.show {
+      transform: translateX(-50%) scale(1);
+    }
+  </style>
+</head>
+<body class="dark">
+  <button class="center-btn" id="lightBtn">Turn on Lights</button>
+  <button id="musicToggle">🔊 Music</button>
+  <div class="banner" id="banner">🎉 Happy Birthday! 🎉</div>
+  <button class="center-btn" id="cutCakeBtn" style="display: none; top: 70%;">Let's cut the cake Madam jii 🎂</button>
+  <img src="https://i.imgur.com/H9D7dWf.png" id="cake" width="150" />
+
+  <audio id="bgMusic" loop>
+    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" type="audio/midi">
+  </audio>
+
+  <script>
+    const lightBtn = document.getElementById('lightBtn');
+    const musicToggle = document.getElementById('musicToggle');
+    const music = document.getElementById('bgMusic');
+    const banner = document.getElementById('banner');
+    const cutCakeBtn = document.getElementById('cutCakeBtn');
+    const cake = document.getElementById('cake');
+
+    lightBtn.onclick = () => {
+      document.body.classList.remove('dark');
+      document.body.classList.add('light');
+      lightBtn.style.display = 'none';
+      musicToggle.style.display = 'block';
+      banner.style.display = 'block';
+      spawnBalloons();
+      setTimeout(() => cutCakeBtn.style.display = 'block', 3000);
+    };
+
+    musicToggle.onclick = () => {
+      if (music.paused) {
+        music.play();
+        musicToggle.textContent = '🔇 Music';
+      } else {
+        music.pause();
+        musicToggle.textContent = '🔊 Music';
+      }
+    };
+
+    cutCakeBtn.onclick = () => {
+      cake.classList.add('show');
+    };
+
+    function spawnBalloons() {
+      const colors = ['#ff4d4d', '#ffcc00', '#33cc33', '#3399ff', '#cc33ff'];
+      for (let i = 0; i < 30; i++) {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
+        document.body.appendChild(balloon);
+      }
+    }
+  </script>
+</body>
+</html>

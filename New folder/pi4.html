@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Do You Wanna See?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fde9f2;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .message-box {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      font-size: 1.4rem;
+      color: #333;
+      max-width: 90%;
+    }
+
+    .star {
+      font-size: 2rem;
+      display: block;
+      color: #ffc107;
+      margin-bottom: 12px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes {
+      background: #f06292; /* Pink */
+    }
+
+    .no {
+      background: #9575cd; /* Purple */
+    }
+
+    .yes:hover {
+      background: #ec407a;
+    }
+
+    .no:hover {
+      background: #7e57c2;
+    }
+
+    .response {
+      margin-top: 20px;
+      display: none;
+      font-size: 1.1rem;
+      color: #e91e63;
+    }
+
+    .next-btn {
+      margin-top: 10px;
+      padding: 8px 18px;
+      background-color: #ff80ab;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+    }
+
+    .next-btn:hover {
+      background-color: #ff4081;
+    }
+	/* Floating Heart Decorations */
+    .wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .floating-heart,
+    .altheart {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .floating-heart:before,
+    .floating-heart:after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      width: 18px;
+      height: 30px;
+      background: #CC2022;
+      border-radius: 30px 30px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .floating-heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    .altheart {
+      background: url(https://static.indigoimages.ca/2016/shop/113439_img25_twotoneheart.png) no-repeat center;
+      width: 24px;
+      height: 21px;
+    }
+
+    .x1 { left: 5%; transform: scale(0.9); opacity: 0.6; animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate; }
+    .x2 { left: 25%; transform: scale(0.6); opacity: 0.9; animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate; }
+    .x3 { left: 55%; transform: scale(0.8); opacity: 0.8; animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate; }
+    .x4 { left: 72%; transform: scale(0.75); opacity: 0.9; animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate; }
+    .x5 { left: 88%; transform: scale(0.8); opacity: 0.3; animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate; }
+    .x6 { left: 33%; opacity: 1; animation: moveclouds 10s linear infinite, swayWays 9s ease-in-out infinite alternate; }
+
+    @keyframes moveclouds {
+      0% { top: 100%; }
+      100% { top: -100px; }
+    }
+
+    @keyframes sideWays {
+      0% { margin-left: 0px; }
+      100% { margin-left: 50px; }
+    }
+
+    @keyframes swayWays {
+      0% { transform: rotate(12deg); left: -0.3%; }
+      33% { transform: rotate(-2deg); left: 0.7%; }
+      100% { transform: rotate(0deg); left: -12%; }
+    }
+	
+  </style>
+</head>
+<body>
+	<div class="wrapper">
+    <div class="floating-heart x1"></div>
+    <div class="floating-heart x2"></div>
+    <div class="floating-heart x3"></div>
+    <div class="floating-heart x4"></div>
+    <div class="floating-heart x5"></div>
+    <div class="altheart x6"></div>
+  </div>
+  <div class="message-box">
+    <span class="star">✨</span>
+    Do you wanna see what I made??
+    <div class="buttons">
+      <button class="yes" onclick="goNext()">Yes!</button>
+      <button class="no" onclick="showMessage()">No</button>
+    </div>
+    <div class="response" id="noMessage">"No? 🥺 But… I poured my heart into it just for you... 💖 <br/>
+          Pretty please click on Yes? 🥺💖</div>
+    <button class="next-btn" id="nextButton" onclick="goNext()">Next</button>
+  </div>
+
+  <script>
+    function goNext() {
+      window.location.href = "pi5.html"; // Change this to your next page
+    }
+
+    function showMessage() {
+      document.getElementById("noMessage").style.display = "block";
+      document.getElementById("nextButton").style.display = "inline-block";
+    }
+  </script>
+
+</body>
+</html>

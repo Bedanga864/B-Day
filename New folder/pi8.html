@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Surprise</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: 'Arial', sans-serif; overflow: hidden; transition: background 1s; }
+
+    body.dark { background: #000; color: #fff; }
+    body.light { background: #ffe4ec; color: #000; }
+
+    button {
+      z-index: 9999;
+    }
+
+    .center-btn, #cutCakeBtn, #nextBtn {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      font-size: 1.2em;
+      background: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #lightBtn {
+      display: block;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #cutCakeBtn { top: 70%; }
+    #nextBtn { top: 80%; }
+
+    #musicToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none;
+      z-index: 2;
+    }
+
+    .banner {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: dropBanner 2s forwards;
+      display: none;
+      z-index: 1;
+    }
+
+    .banner img {
+      width: 500px;
+    }
+
+    .bulbs {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      display: none;
+      z-index: 9;
+    }
+
+    .bulbs img {
+      width: 100%;
+      max-height: 100px;
+    }
+
+    @keyframes dropBanner {
+      to { top: 20px; }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 40px;
+      background: red;
+      border-radius: 50%;
+      animation: flyBalloon 6s linear infinite;
+    }
+
+    @keyframes flyBalloon {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120vh); }
+    }
+
+    #cake {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 1s;
+      z-index: 1;
+    }
+
+    #cake.show {
+      transform: translateX(-50%) scale(1);
+    }
+
+   
+  </style>
+</head>
+<body class="dark">
+
+  <button class="center-btn" id="lightBtn">Turn on Lights</button>
+  <button id="musicToggle">🔊 Music</button>
+
+  <div class="bulbs" id="bulbs">
+    <img src="bulbs1.png" alt="Bulbs" />
+  </div>
+
+  <div class="banner" id="banner">
+    <img src="banner.png" alt="Birthday Banner" />
+  </div>
+
+  <button class="center-btn" id="cutCakeBtn" style="display: none; top: 50%;">Let's cut the cake Madam jii 🎂</button>
+  <img src="cake1.gif" id="cake" width="200" />
+
+  <!-- Next Button (will appear under the cake) -->
+<a href="message.html" id="nextBtn" style="
+  display: none;
+  position: absolute;
+  top: calc(5% + 100px);  /* below the cake */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 5px;
+  font-size: 1.2em;
+  background: deeppink;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  z-index: 2;
+">Next ➡️</a>
+
+  <audio id="bgMusic" loop>
+    <source src="hbd.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const lightBtn = document.getElementById('lightBtn');
+    const musicToggle = document.getElementById('musicToggle');
+    const music = document.getElementById('bgMusic');
+    const bulbs = document.getElementById('bulbs');
+    const banner = document.getElementById('banner');
+    const cutCakeBtn = document.getElementById('cutCakeBtn');
+    const cake = document.getElementById('cake');
+
+    lightBtn.onclick = () => {
+      document.body.classList.remove('dark');
+      document.body.classList.add('light');
+      lightBtn.style.display = 'none';
+      musicToggle.style.display = 'block';
+      bulbs.style.display = 'block';
+      banner.style.display = 'block';
+      music.play();
+      spawnBalloons();
+      setTimeout(() => cutCakeBtn.style.display = 'block', 3000);
+    };
+
+    musicToggle.onclick = () => {
+      if (music.paused) {
+        music.play();
+        musicToggle.textContent = '🔇 Music';
+      } else {
+        music.pause();
+        musicToggle.textContent = '🔊 Music';
+      }
+    };
+
+       cutCakeBtn.onclick = () => {
+       cake.classList.add('show');
+	   // Wait a moment, then show the next button under the cake
+  setTimeout(() => {
+    const cakeRect = cake.getBoundingClientRect();
+    const nextBtn = document.getElementById('nextBtn');
+
+    nextBtn.style.display = 'block';
+    nextBtn.style.top = `${cakeRect.bottom + 10}px`; // 10px below cake
+  }, 1000);
+};
+     // setTimeout(() => {
+      //  nextBtn.style.display = 'block';
+     // }, 1500);
+   // };
+
+
+    function spawnBalloons() {
+      const colors = ['#ff4d4d', '#ffcc00', '#33cc33', '#3399ff', '#cc33ff'];
+      for (let i = 0; i < 30; i++) {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
+        document.body.appendChild(balloon);
+      }
+    }
+  </script>
+</body>
+</html>
