@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Special Day Message</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px 16px;
+      min-height: 100vh;
+      background: #fadede;
+      overflow-x: hidden;
+    }
+
+    /* MAIN CONTAINER */
+
+    .container {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 90vh;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    /* BIRTHDAY LETTER */
+
+    .letter {
+      flex: 1;
+      min-width: 0;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      color: #FE7696;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: normal;
+      line-height: 1.5;
+      text-align: center;
+      overflow-wrap: break-word;
+      margin: 0;
+    }
+
+    h1 p {
+      margin: 0 0 15px;
+    }
+
+   			.rose{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				right: 0;
+				display: inline-block;
+				animation: yidon 5s infinite;
+				transform: translateY(40%);
+			}
+			
+			.petal{
+				width: 50px;
+				height: 50px;
+				background: #fe7696;
+				border-radius: 0px 50%;
+				position: absolute;
+				box-shadow: 0 0 10px #D1123F;
+				z-index: 2;
+				transform-origin: bottom right; 
+				animation: zhankai2 10s infinite;
+				
+			}
+			
+			.petal:nth-child(2){
+				transform-origin: right bottom;
+				transform: rotate(90deg);
+				background: #fe7696;
+				left: -10px;
+				animation: zhankai1 10s infinite;
+			}
+			
+			.petal:nth-child(3){
+				width: 40px;
+				height: 40px;
+				left: 10px;
+				top: -20px;
+				z-index: 1;
+				background: #f03a64;
+				transform-origin: bottom right; 
+				animation: zhankai2 10s infinite;
+			}
+			
+			.petal:nth-child(4){
+				transform: rotate(90deg);
+				width: 40px;
+				height: 40px;
+				left: 0px;
+				top: -20px;
+				z-index: 1;
+				background: #f03a64;
+				transform-origin: bottom right; 
+				animation: zhankai1 10s infinite;
+			}
+			
+			.petal:nth-child(5){
+				width: 50px;
+				height: 50px;
+				border-radius: 20px;
+				left: 20px;
+				top: -30px;
+				z-index: 0;
+				background: #d1123f;
+				
+			}
+			
+			.leaf{
+				position: absolute;
+				top: 120px;
+				left: -115px;
+			}
+			
+			.stem{
+				width: 240px;
+				height: 40px;
+				background: transparent;
+				border: 8px solid #8ac78a;
+				border-color: #77a377 transparent transparent transparent;
+				border-radius: 50% 50%;
+				transform: rotate(100deg);
+			}
+			
+			.leafs{
+				width: 50px;
+				height: 40px;
+				border-radius: 0px 50%;
+				background: #77a377;
+				position: absolute;
+				top: 0;
+				left: 100px;
+				z-index: 49;
+			}
+			
+			.leafs:nth-child(2){
+				width: 40px;
+				height: 20px;
+				top: 40px;
+				left: 140px;
+				transform: rotate(120deg);
+			}
+			
+			@keyframes yidon{
+				50%{
+					transform: translateY(35%);
+				}
+				100%{
+					transform: translateY(40%);
+				}
+			}
+			
+			@keyframes zhankai1{
+				50%{
+					transform: rotate(110deg);
+				}
+				100%{
+					transform: rotate(90deg);
+				}
+			}
+			
+			@keyframes zhankai2{
+				50%{
+					transform: rotate(-20deg);
+				}
+				100%{
+					transform: rotate(0deg);
+				}
+			}
+    /* MOBILE RESPONSIVENESS */
+
+    @media screen and (max-width: 768px) {
+
+      body {
+        padding: 20px 18px 35px;
+      }
+
+      .container {
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: flex-start;
+      }
+
+      .rose {
+        flex: none;
+        width: 150px;
+        height: 175px;
+        margin: 10px auto 0;
+        transform: scale(0.85);
+      }
+
+      .letter {
+        width: 100%;
+        flex: none;
+      }
+
+      h1 {
+        font-size: clamp(29px, 8vw, 36px);
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      h1 p {
+        margin-bottom: 18px;
+      }
+    }
+
+    /* EXTRA SMALL PHONES */
+
+    @media screen and (max-width: 360px) {
+
+      body {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      h1 {
+        font-size: 28px;
+        line-height: 1.5;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- BIRTHDAY MESSAGE -->
+
+    <div class="letter">
+      <h1>
+
+        <p>Happy Birthday, You!</p>
+
+        <p>
+          It’s crazy how we’ve never met in person,
+          yet you feel so close — like a piece of my day
+          I never knew I was missing until you came into it.
+        </p>
+
+        <p>
+          From random chats to sharing our highs and lows,
+          you’ve slowly made a home in my heart.
+          Your caring words, that warm energy, your support —
+          and yes, that adorable smile I imagine when you laugh —
+          all of it means more than I can explain.
+        </p>
+
+        <p>
+          Maybe destiny didn’t bring us face-to-face,
+          but it still brought you to me, and that’s
+          something I’ll always be thankful for.
+        </p>
+
+        <p>
+          So here’s to your day — may it be as lovely,
+          gentle, and heartwarming as you are.
+          And maybe one day, we’ll finally meet and smile
+          over all the memories we’ve already made —
+          and the ones still waiting for us.
+        </p>
+
+        <p>
+          Happy Birthday again — you’ve become very,
+          very special to me. 💕
+        </p>
+
+      </h1>
+    </div>
+
+    <!-- ANIMATED ROSE -->
+
+    </div>
+			<div class="rose">
+				<div class="flower">
+					<div class="petal"></div>
+					<div class="petal"></div>
+					<div class="petal"></div>
+					<div class="petal"></div>
+					<div class="petal"></div>
+				</div>
+				<div class="leaf">
+					<div class="stem"></div>
+					<div class="leafs"></div>
+					<div class="leafs"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+  </div>
+
+</body>
+</html>
